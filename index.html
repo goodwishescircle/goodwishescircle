@@ -1,124 +1,102 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>祈福圈 Good Wishes Circle · 即将上线</title>
-<meta name="description" content="祈福圈 Good Wishes Circle：为远方的家人点一盏灯。山海再远，灯火相连。for all your well-wishers. 2027 年除夕上线。">
-<meta property="og:title" content="祈福圈 Good Wishes Circle">
-<meta property="og:description" content="山海再远，灯火相连。for all your well-wishers.">
-<meta name="theme-color" content="#0f1430">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 56'%3E%3Cpath d='M8 4 Q20 0 32 4 L36 40 Q20 46 4 40 Z' fill='%23f2a541'/%3E%3Cellipse cx='20' cy='42' rx='9' ry='2.4' fill='%235a1f0e'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b25">
+<meta name="description" content="祈福圈 GOOD WISHES CIRCLE — 让心，有一个安放的地方。沉浸式东方古典数字祈愿体验。">
+<title>祈福圈 GOOD WISHES CIRCLE｜让心，有一个安放的地方</title>
 <style>
-  :root{
-    --night:#0f1430; --sky:#2a3466; --amber:#f2a541; --gold:#ffe2b0;
-    --text:#eef0fa; --muted:#b7bce0; --seal:#b8322a;
-    color-scheme:dark;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;height:100%}
-  body{
-    min-height:100%;
-    background:radial-gradient(90% 60% at 50% 100%, #3a2a4a 0%, rgba(58,42,74,0) 70%), linear-gradient(var(--sky), var(--night) 75%);
-    background-attachment:fixed;
-    color:var(--text);
-    font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
-    line-height:1.7;
-    overflow-x:hidden;
-  }
-  .serif{font-family:"Noto Serif SC","Songti SC","STSong",serif}
-  .sky{position:fixed;inset:0;pointer-events:none;overflow:hidden}
-  .star{position:absolute;border-radius:50%;background:#fff}
-  .lantern{position:absolute;bottom:-80px;animation:rise linear infinite}
-  .lantern svg{display:block;width:100%;height:auto;filter:drop-shadow(0 0 14px rgba(242,165,65,.6));animation:sway 4s ease-in-out infinite alternate}
-  @keyframes rise{0%{transform:translateY(0);opacity:0}10%{opacity:1}85%{opacity:.85}100%{transform:translateY(-115vh);opacity:0}}
-  @keyframes sway{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
-
-  main{
-    position:relative;z-index:1;min-height:100vh;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;gap:18px;
-    padding:calc(48px + env(safe-area-inset-top,0px)) 24px calc(40px + env(safe-area-inset-bottom,0px));
-  }
-  .brand{display:flex;flex-direction:column;align-items:center;gap:2px;margin-bottom:8px}
-  .brand .zh{font-size:22px;font-weight:700;letter-spacing:.2em;padding-left:.2em;color:#fff3dc}
-  .brand .en{font-size:13px;letter-spacing:.08em;color:var(--muted)}
-  h1{
-    margin:0;font-weight:700;color:var(--gold);
-    font-size:clamp(40px,11vw,84px);line-height:1.25;letter-spacing:.08em;
-    text-shadow:0 0 30px rgba(242,165,65,.35);
-  }
-  .slogan{margin:0;font-size:clamp(18px,4.5vw,22px);color:#f2d7a8}
-  .lead{margin:0;max-width:24em;color:#d5d8f0;font-size:16px}
-  .date{
-    margin-top:14px;display:inline-flex;align-items:center;gap:12px;
-    padding:12px 24px;border-radius:999px;
-    background:rgba(242,165,65,.12);border:1px solid rgba(242,165,65,.5);
-    color:#fff3dc;font-size:16px;
-  }
-  .date b{color:var(--amber);font-weight:600}
-  .seal{
-    width:30px;height:30px;border-radius:6px;background:var(--seal);color:#fff4e6;
-    display:grid;place-items:center;font-size:16px;font-weight:700;flex:none
-  }
-  .contact{margin-top:6px;font-size:14px;color:var(--muted)}
-  .contact a{color:var(--amber);text-decoration:none}
-  .contact a:hover{text-decoration:underline}
-  footer{
-    position:relative;z-index:1;text-align:center;
-    padding:0 24px calc(24px + env(safe-area-inset-bottom,0px));
-    font-size:12px;color:#8f95bd
-  }
-  @media (prefers-reduced-motion: reduce){
-    .lantern{animation:none;bottom:auto}
-    .lantern svg{animation:none}
-  }
+:root{--ink:#101b25;--gold:#d8b875;--ivory:#f5efe3;--muted:#d9d0c1;--red:#792f27}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--ivory);font-family:"Noto Serif SC","Songti SC","STSong",serif}
+a{color:inherit;text-decoration:none}.hero{min-height:100svh;position:relative;display:flex;align-items:center;overflow:hidden;background:#101b25}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,15,22,.88) 0%,rgba(7,15,22,.55) 43%,rgba(7,15,22,.08) 100%),url("assets/moonlit-prayer-garden.png") center 44%/cover no-repeat;transform:scale(1.015)}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(transparent,var(--ink))}
+.nav{position:absolute;z-index:2;top:0;left:0;right:0;padding:25px clamp(22px,5vw,76px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(216,184,117,.18)}
+.brand{display:flex;gap:13px;align-items:center;color:var(--gold)}.seal{width:46px;height:46px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-size:23px}.brand strong{display:block;font-size:22px;letter-spacing:5px;font-weight:500}.brand small{font:10px Georgia,serif;letter-spacing:2px}
+.navlinks{display:flex;gap:32px;align-items:center;color:#e9dcc3;font-size:14px}.navlinks a:hover{color:var(--gold)}
+.hero-copy{position:relative;z-index:1;width:min(610px,90%);margin-left:clamp(24px,9vw,140px);padding:130px 0 110px}
+.kicker{color:var(--gold);letter-spacing:4px;font:12px Georgia,serif;text-transform:uppercase}
+h1{font-size:clamp(42px,6.4vw,78px);line-height:1.35;letter-spacing:7px;font-weight:500;margin:24px 0 16px;color:#f2d69d;text-shadow:0 3px 25px #000}
+.enline{font:clamp(15px,2vw,20px) Georgia,serif;color:#e4c88f;letter-spacing:1px}.intro{margin:28px 0 34px;line-height:2.1;color:#e5ddcf;font-size:16px;letter-spacing:2px}
+.cta{display:inline-flex;align-items:center;gap:16px;padding:16px 28px;background:linear-gradient(135deg,#8e4031,#59231f);border:1px solid #d9b66f;box-shadow:0 8px 30px #0008;color:#f8e3b2;letter-spacing:2px;font-size:16px;cursor:pointer;transition:.25s}
+.cta:hover{transform:translateY(-3px);box-shadow:0 12px 36px #000a}.price{margin:14px 0 0 8px;color:#d9c49e;font-size:13px;letter-spacing:1px}
+.scrollhint{position:absolute;z-index:2;bottom:24px;left:50%;transform:translateX(-50%);color:#d4bd8b;font-size:11px;letter-spacing:4px}
+.section{padding:90px 22px;max-width:1200px;margin:auto}.eyebrow{text-align:center;color:var(--gold);font:12px Georgia,serif;letter-spacing:4px}.section h2{text-align:center;font-size:clamp(28px,4vw,42px);font-weight:400;letter-spacing:5px;margin:18px 0 14px}.sub{text-align:center;color:#bdb5a7;line-height:2;margin:0 auto 44px;max-width:650px}
+.experiences{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.experience{position:relative;min-height:260px;padding:24px 18px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid #b99b6045;background:linear-gradient(0deg,#09121beF,transparent 75%),#1d2a32;overflow:hidden;cursor:pointer;transition:.3s}.experience:hover{transform:translateY(-5px);border-color:var(--gold)}.experience:before{content:attr(data-symbol);position:absolute;top:24px;left:50%;transform:translateX(-50%);font-size:58px;color:#d8b87588}.experience h3{font-size:20px;font-weight:400;color:#f0d59d;margin:0 0 8px}.experience p{font-size:13px;line-height:1.8;color:#c9c1b4;margin:0}
+.journey{background:linear-gradient(180deg,#172630,#101b25);border-top:1px solid #c5a56835;border-bottom:1px solid #c5a56835}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}.step-num{font:32px Georgia;color:var(--gold)}.steps h3{font-weight:400;color:#eed39b;letter-spacing:2px}.steps p{color:#c5bdae;line-height:1.9;font-size:14px}
+.offer{text-align:center;padding:85px 22px 100px;background:radial-gradient(ellipse at center,#263641,#101b25 70%)}.offer h2{font-size:clamp(28px,4vw,42px);font-weight:400;letter-spacing:4px}.offer .amount{font:48px Georgia;color:var(--gold);margin:18px}.offer p{color:#c9c0b2;line-height:2}
+footer{padding:30px 20px;text-align:center;border-top:1px solid #c5a56835;color:#a99f90;font-size:12px;line-height:2}
+dialog{border:1px solid #b99b60;background:#15232d;color:var(--ivory);width:min(560px,92vw);padding:28px;box-shadow:0 20px 80px #000b}dialog::backdrop{background:#02070bcc}.modalhead{display:flex;justify-content:space-between;align-items:center}.modalhead button,.close{background:none;border:0;color:var(--gold);font-size:24px;cursor:pointer}.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}.choice{padding:14px;border:1px solid #8e784c;background:#1d303a;color:#eee0c6;text-align:left;cursor:pointer}.choice.active{background:#60352e;border-color:var(--gold)}label{display:block;color:#d7c7a9;margin:16px 0 8px}textarea,input{width:100%;padding:13px;background:#0d1820;border:1px solid #796b52;color:#fff;font:15px inherit}textarea{min-height:110px;resize:vertical}.note{font-size:12px;color:#aaa092;line-height:1.8}.submit{width:100%;margin-top:18px;justify-content:center}
+@media(max-width:760px){.nav{padding:18px}.brand strong{font-size:17px;letter-spacing:3px}.brand small{font-size:8px}.seal{width:38px;height:38px}.navlinks{gap:12px;font-size:12px}.navlinks a:nth-child(2){display:none}.hero:before{background:linear-gradient(90deg,rgba(7,15,22,.83),rgba(7,15,22,.25)),url("assets/moonlit-prayer-garden.png") 58% center/cover no-repeat}.hero-copy{margin:0 24px;width:88%;padding-top:140px}h1{font-size:43px;letter-spacing:4px}.intro{font-size:14px}.experiences{grid-template-columns:1fr 1fr}.experience{min-height:220px;padding:18px 14px}.steps{grid-template-columns:1fr;gap:20px}.section{padding:65px 20px}}
 </style>
 </head>
 <body>
-  <div class="sky" id="sky" aria-hidden="true"></div>
+<header class="hero" id="home">
+  <nav class="nav">
+    <a class="brand" href="#home"><span class="seal">祈</span><span><strong>祈福圈</strong><small>GOOD WISHES CIRCLE</small></span></a>
+    <div class="navlinks"><a href="#home">首页</a><a href="#experiences">祈愿体验</a><a href="#about">关于我们</a><a href="#" aria-label="English">EN</a></div>
+  </nav>
+  <div class="hero-copy">
+    <div class="kicker">A PLACE FOR YOUR HEART TO REST</div>
+    <h1>心有所愿，<br>善意相连。</h1>
+    <div class="enline">Where Wishes Connect Hearts</div>
+    <p class="intro">在一处宁静的东方祈愿之境，<br>为自己，也为所爱的人，<br>留下一份真挚的祝福。</p>
+    <button class="cta" onclick="document.getElementById('wishModal').showModal()">开启我的专属祈愿 <span>→</span></button>
+    <div class="price">MY PERSONAL WISH · £4.99 · 一次完整体验</div>
+  </div>
+  <div class="scrollhint">向下探索　⌄</div>
+</header>
 
-  <main>
-    <div class="brand">
-      <span class="zh serif">祈福圈</span>
-      <span class="en">Good Wishes Circle</span>
-    </div>
-    <h1 class="serif">山海再远<br>灯火相连</h1>
-    <p class="slogan serif">for all your well-wishers</p>
-    <p class="lead">为远方的家人点一盏灯，锁一把同心锁。<br>人在海外，心意送到家。</p>
-    <div class="date">
-      <span class="seal serif">福</span>
-      <span>2027 年 2 月 6 日 · 除夕 <b>正式上线</b></span>
-    </div>
-    <p class="contact">合作与联系 · <a href="mailto:info@goodwishescircle.com">info@goodwishescircle.com</a></p>
-  </main>
+<section class="section" id="experiences">
+  <div class="eyebrow">ENTER YOUR MOMENT</div>
+  <h2>走进属于自己的祈愿之境</h2>
+  <p class="sub">选择一处让心安静下来的东方场景。你不是旁观者，而是这段体验中的主角。</p>
+  <div class="experiences">
+    <article class="experience" data-symbol="香" onclick="openWish('古寺上香')"><h3>古寺上香</h3><p>在袅袅香烟中，静静写下心愿。</p></article>
+    <article class="experience" data-symbol="灯" onclick="openWish('祈愿供灯')"><h3>祈愿供灯</h3><p>以一盏暖灯，寄托一份牵挂。</p></article>
+    <article class="experience" data-symbol="莲" onclick="openWish('莲池许愿')"><h3>莲池许愿</h3><p>在清幽莲池边，留住此刻心念。</p></article>
+    <article class="experience" data-symbol="月" onclick="openWish('月下静心')"><h3>月下静心</h3><p>在月色与庭院之间，与自己相遇。</p></article>
+  </div>
+</section>
 
-  <footer>© 2026 Good Wishes Circle · London</footer>
+<section class="journey" id="about">
+ <div class="section">
+  <div class="eyebrow">YOUR PERSONAL JOURNEY</div><h2>一份完整而私密的体验</h2>
+  <p class="sub">从选择场景，到写下心愿，再到留下专属纪念。每一步，都为你而设。</p>
+  <div class="steps">
+   <div><div class="step-num">01</div><h3>选择你的场景</h3><p>走进古寺、庭院、莲池或月下空间，选择此刻最想停留的地方。</p></div>
+   <div><div class="step-num">02</div><h3>写下心底的愿望</h3><p>上传照片或选择不露脸的形象呈现方式，把自己放进场景之中。</p></div>
+   <div><div class="step-num">03</div><h3>完成祈愿与纪念</h3><p>参与象征性的数字仪式，生成专属祈愿纪念画面，留存这一刻。</p></div>
+  </div>
+ </div>
+</section>
 
+<section class="offer">
+ <div class="eyebrow">MY PERSONAL WISH</div><h2>让心，有一个安放的地方。</h2><div class="amount">£4.99</div>
+ <p>一次性费用 · 完整数字祈愿体验 · 专属纪念画面</p>
+ <button class="cta" onclick="document.getElementById('wishModal').showModal()">开始我的祈愿　→</button>
+ <p class="note" style="max-width:700px;margin:24px auto 0">本服务为数字文化与个人情感表达体验，不构成宗教机构提供的真实宗教仪式，不承诺愿望实现或任何超自然结果。</p>
+</section>
+<footer>祈福圈 GOOD WISHES CIRCLE · Where Wishes Connect Hearts<br>© 2026 GOOD WISHES CIRCLE · <a href="mailto:info@goodwishescircle.com">INFO@GOODWISHESCIRCLE.COM</a><br>本页面为视觉与流程原型。在线支付、AI人物融景、账户保存及订单邮件尚未接入。</footer>
+
+<dialog id="wishModal">
+ <div class="modalhead"><div><div class="eyebrow" style="text-align:left">MY PERSONAL WISH · £4.99</div><h2 style="font-weight:400;margin:8px 0">开启专属祈愿</h2></div><button onclick="document.getElementById('wishModal').close()" aria-label="关闭">×</button></div>
+ <p class="note">先选择你想进入的场景，再写下此刻的心愿。这是体验原型，暂不会收集或提交你的内容。</p>
+ <div class="choices">
+  <button class="choice active" onclick="choose(this,'古寺上香')">古寺上香</button>
+  <button class="choice" onclick="choose(this,'祈愿供灯')">祈愿供灯</button>
+  <button class="choice" onclick="choose(this,'莲池许愿')">莲池许愿</button>
+  <button class="choice" onclick="choose(this,'月下静心')">月下静心</button>
+ </div>
+ <label for="wish">写下你的心愿</label><textarea id="wish" placeholder="只写给自己，或写给你在意的人……"></textarea>
+ <label for="photo">上传照片（可选，正式版将用于人物融入场景）</label><input id="photo" type="file" accept="image/*">
+ <p class="note">原型阶段不会上传照片或保存心愿。正式上线前将加入明确同意、隐私说明及删除机制。</p>
+ <button class="cta submit" onclick="alert('这是网站视觉原型。支付与AI人物融景功能尚未接入。')">继续体验　→</button>
+</dialog>
 <script>
-(function(){
-  var sky=document.getElementById('sky');
-  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  for(var i=0;i<70;i++){
-    var s=document.createElement('span');s.className='star';
-    var r=Math.random()<.15?3:2;
-    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*70+'%;width:'+r+'px;height:'+r+'px;opacity:'+(.2+Math.random()*.6).toFixed(2);
-    sky.appendChild(s);
-  }
-  var svg='<svg viewBox="0 0 40 56"><path d="M8 4 Q20 0 32 4 L36 40 Q20 46 4 40 Z" fill="#f2a541"/><ellipse cx="20" cy="26" rx="10" ry="12" fill="#ffe2a8" opacity=".7"/><path d="M8 4 Q20 0 32 4" fill="none" stroke="#8a2b14" stroke-width="1.2"/><ellipse cx="20" cy="42" rx="9" ry="2.4" fill="#5a1f0e"/><circle cx="20" cy="47" r="2.2" fill="#ffd27a"/></svg>';
-  for(var j=0;j<14;j++){
-    var l=document.createElement('div');l.className='lantern';
-    var w=16+Math.random()*26, dur=18+Math.random()*16;
-    l.style.left=(3+Math.random()*94)+'%';
-    l.style.width=w+'px';
-    if(still){l.style.top=(10+Math.random()*75)+'%';}
-    else{l.style.animationDuration=dur+'s';l.style.animationDelay=(-Math.random()*dur)+'s';}
-    l.innerHTML=svg;sky.appendChild(l);
-  }
-})();
+let selected='古寺上香';
+function choose(el,name){selected=name;document.querySelectorAll('.choice').forEach(x=>x.classList.remove('active'));el.classList.add('active')}
+function openWish(name){document.getElementById('wishModal').showModal();document.querySelectorAll('.choice').forEach(x=>{x.classList.toggle('active',x.textContent===name)});selected=name}
 </script>
-</body>
-</html>
+</body></html>
