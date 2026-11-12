@@ -29,6 +29,26 @@ h1{font-size:clamp(42px,6.4vw,78px);line-height:1.35;letter-spacing:7px;font-wei
 footer{padding:30px 20px;text-align:center;border-top:1px solid #c5a56835;color:#a99f90;font-size:12px;line-height:2}
 dialog{border:1px solid #b99b60;background:#15232d;color:var(--ivory);width:min(560px,92vw);padding:28px;box-shadow:0 20px 80px #000b}dialog::backdrop{background:#02070bcc}.modalhead{display:flex;justify-content:space-between;align-items:center}.modalhead button,.close{background:none;border:0;color:var(--gold);font-size:24px;cursor:pointer}.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}.choice{padding:14px;border:1px solid #8e784c;background:#1d303a;color:#eee0c6;text-align:left;cursor:pointer}.choice.active{background:#60352e;border-color:var(--gold)}label{display:block;color:#d7c7a9;margin:16px 0 8px}textarea,input{width:100%;padding:13px;background:#0d1820;border:1px solid #796b52;color:#fff;font:15px inherit}textarea{min-height:110px;resize:vertical}.note{font-size:12px;color:#aaa092;line-height:1.8}.submit{width:100%;margin-top:18px;justify-content:center}
 @media(max-width:760px){.nav{padding:18px}.brand strong{font-size:17px;letter-spacing:3px}.brand small{font-size:8px}.seal{width:38px;height:38px}.navlinks{gap:12px;font-size:12px}.navlinks a:nth-child(2){display:none}.hero:before{background:linear-gradient(90deg,rgba(7,15,22,.83),rgba(7,15,22,.25)),url("assets/moonlit-prayer-garden.png") 58% center/cover no-repeat}.hero-copy{margin:0 24px;width:88%;padding-top:140px}h1{font-size:43px;letter-spacing:4px}.intro{font-size:14px}.experiences{grid-template-columns:1fr 1fr}.experience{min-height:220px;padding:18px 14px}.steps{grid-template-columns:1fr;gap:20px}.section{padding:65px 20px}}
+.imm{position:fixed;inset:0;z-index:50;background:#05090e;overflow:hidden;color:#f3e2bd}
+.imm[hidden]{display:none}
+.imm canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.imm-top{position:absolute;top:0;left:0;right:0;z-index:2;padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.imm-title{color:var(--gold);font:12px Georgia,serif;letter-spacing:3px;text-shadow:0 1px 8px #000}
+.imm-title b{display:block;font:500 17px "Noto Serif SC","Songti SC",serif;letter-spacing:4px;color:#f2d69d}
+.imm-btn{min-height:44px;padding:0 16px;border:1px solid rgba(216,184,117,.55);background:rgba(10,18,26,.5);color:#f3e2bd;font:14px "Noto Serif SC","Songti SC",serif;letter-spacing:1px;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.imm-btn:hover{border-color:var(--gold)}
+.imm-btn[aria-pressed="true"]{background:rgba(121,47,39,.75);border-color:var(--gold)}
+.imm-wish{position:absolute;left:7%;right:7%;top:calc(env(safe-area-inset-top,0px) + 120px);z-index:2;text-align:center;font-size:clamp(21px,5.4vw,36px);line-height:1.8;letter-spacing:4px;color:#f2d69d;text-shadow:0 2px 18px #000,0 0 30px rgba(242,214,157,.35);pointer-events:none}
+.imm-wish span{display:inline-block;opacity:0;animation:inkIn 1.8s ease forwards}
+@keyframes inkIn{from{opacity:0;filter:blur(6px);transform:translateY(8px)}to{opacity:1;filter:blur(0);transform:none}}
+.imm-breath{position:absolute;right:18px;top:calc(env(safe-area-inset-top,0px) + 66px);width:62px;height:62px;z-index:2;display:grid;place-items:center;font-size:13px;letter-spacing:2px;color:#f3e2bd;text-shadow:0 1px 8px #000;pointer-events:none}
+.imm-breath .ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(242,214,157,.75);box-shadow:0 0 22px rgba(242,214,157,.35),inset 0 0 16px rgba(242,214,157,.2)}
+.imm-status{white-space:pre-line;position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:2;width:min(320px,82vw);text-align:center;font-size:14px;line-height:1.9;letter-spacing:1px;color:#e9dcc3;text-shadow:0 1px 10px #000;pointer-events:none}
+.imm-status:empty{display:none}
+.imm-status.small{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 140px);transform:translateX(-50%);font-size:12px;color:#cfc4b0}
+.imm-bar{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:28px 12px calc(env(safe-area-inset-bottom,0px) + 18px);display:flex;flex-wrap:wrap;justify-content:center;gap:8px;background:linear-gradient(rgba(3,7,11,0),rgba(3,7,11,.75))}
+.imm-fade{position:absolute;inset:0;z-index:3;background:#05090e;pointer-events:none;transition:opacity 2.4s ease}
+@media (prefers-reduced-motion:reduce){.imm-wish span{animation-duration:.01s}.imm-fade{transition-duration:.3s}}
 </style>
 </head>
 <body>
@@ -78,11 +98,11 @@ dialog{border:1px solid #b99b60;background:#15232d;color:var(--ivory);width:min(
  <button class="cta" onclick="document.getElementById('wishModal').showModal()">开始我的祈愿　→</button>
  <p class="note" style="max-width:700px;margin:24px auto 0">本服务为数字文化与个人情感表达体验，不构成宗教机构提供的真实宗教仪式，不承诺愿望实现或任何超自然结果。</p>
 </section>
-<footer>祈福圈 GOOD WISHES CIRCLE · Where Wishes Connect Hearts<br>© 2026 GOOD WISHES CIRCLE · <a href="mailto:info@goodwishescircle.com">INFO@GOODWISHESCIRCLE.COM</a><br>本页面为视觉与流程原型。在线支付、AI人物融景、账户保存及订单邮件尚未接入。</footer>
+<footer>祈福圈 GOOD WISHES CIRCLE · Where Wishes Connect Hearts<br>© 2026 GOOD WISHES CIRCLE · <a href="mailto:info@goodwishescircle.com">INFO@GOODWISHESCIRCLE.COM</a><br>体验版：AI 人物融景在你的设备上完成，照片不会上传。在线支付与账户功能即将推出。</footer>
 
 <dialog id="wishModal">
- <div class="modalhead"><div><div class="eyebrow" style="text-align:left">MY PERSONAL WISH · £4.99</div><h2 style="font-weight:400;margin:8px 0">开启专属祈愿</h2></div><button onclick="document.getElementById('wishModal').close()" aria-label="关闭">×</button></div>
- <p class="note">先选择你想进入的场景，再写下此刻的心愿。这是体验原型，暂不会收集或提交你的内容。</p>
+ <div class="modalhead"><div><div class="eyebrow" style="text-align:left">MY PERSONAL WISH</div><h2 style="font-weight:400;margin:8px 0">开启专属祈愿</h2></div><button onclick="document.getElementById('wishModal').close()" aria-label="关闭">×</button></div>
+ <p class="note">先选择你想进入的场景，再写下此刻的心愿。你的内容不会被提交或保存。</p>
  <div class="choices">
   <button class="choice active" onclick="choose(this,'古寺上香')">古寺上香</button>
   <button class="choice" onclick="choose(this,'祈愿供灯')">祈愿供灯</button>
@@ -90,13 +110,305 @@ dialog{border:1px solid #b99b60;background:#15232d;color:var(--ivory);width:min(
   <button class="choice" onclick="choose(this,'月下静心')">月下静心</button>
  </div>
  <label for="wish">写下你的心愿</label><textarea id="wish" placeholder="只写给自己，或写给你在意的人……"></textarea>
- <label for="photo">上传照片（可选，正式版将用于人物融入场景）</label><input id="photo" type="file" accept="image/*">
- <p class="note">原型阶段不会上传照片或保存心愿。正式上线前将加入明确同意、隐私说明及删除机制。</p>
- <button class="cta submit" onclick="alert('这是网站视觉原型。支付与AI人物融景功能尚未接入。')">继续体验　→</button>
+ <label for="photo">上传一张你的照片（可选，AI 会把你融入场景）</label><input id="photo" type="file" accept="image/*">
+ <p class="note">照片只在你的手机或电脑里由 AI 处理，不会上传，也不会被保存。正面、半身、背景简单的照片效果最好。</p>
+ <button class="cta submit" onclick="startImmersive()">继续体验　→</button>
 </dialog>
+<div class="imm" id="imm" hidden role="dialog" aria-modal="true" aria-label="沉浸祈愿场景">
+ <canvas id="immCanvas"></canvas>
+ <div class="imm-top"><div class="imm-title" id="immTitle"></div><button type="button" class="imm-btn" id="immClose">离开</button></div>
+ <div class="imm-wish" id="immWish" aria-live="polite"></div>
+ <div class="imm-breath" id="immBreath" aria-hidden="true"><span class="ring" id="breathRing"></span><span id="breathTxt">吸气</span></div>
+ <div class="imm-status" id="immStatus" aria-live="polite"></div>
+ <div class="imm-bar">
+  <button type="button" class="imm-btn" id="bSound" aria-pressed="false">静心音</button>
+  <button type="button" class="imm-btn" id="bBreath" aria-pressed="true">呼吸引导</button>
+  <button type="button" class="imm-btn" id="bScene">换个场景</button>
+  <button type="button" class="imm-btn" id="bSave">保存纪念画面</button>
+ </div>
+ <div class="imm-fade" id="immFade"></div>
+</div>
 <script>
 let selected='古寺上香';
 function choose(el,name){selected=name;document.querySelectorAll('.choice').forEach(x=>x.classList.remove('active'));el.classList.add('active')}
 function openWish(name){document.getElementById('wishModal').showModal();document.querySelectorAll('.choice').forEach(x=>{x.classList.toggle('active',x.textContent===name)});selected=name}
+</script>
+<script>
+(function(){
+var SC={
+ '古寺上香':{key:'temple',en:'ANCIENT TEMPLE',sky:['#0a121c','#1b2737','#3a2f36'],moon:[.76,.15,34],moonC:'255,226,180',tint:'#b9a690',rim:'255,196,120',water:false,mist:'190,172,155',fly:'255,190,110'},
+ '祈愿供灯':{key:'lantern',en:'LANTERN OF WISHES',sky:['#090e16','#1a1f2e','#43292a'],moon:[.22,.13,24],moonC:'255,220,170',tint:'#c6a28a',rim:'255,170,90',water:true,mist:'200,150,110',fly:'255,180,90'},
+ '莲池许愿':{key:'lotus',en:'LOTUS POND',sky:['#07121a','#103039','#1e4648'],moon:[.72,.14,32],moonC:'230,242,236',tint:'#a2b6b2',rim:'210,236,230',water:true,mist:'170,205,200',fly:'220,255,230'},
+ '月下静心':{key:'moon',en:'UNDER THE MOON',sky:['#060c17','#132139','#2b3b58'],moon:[.5,.2,60],moonC:'240,242,255',tint:'#a8b0ca',rim:'222,230,255',water:false,mist:'180,190,222',fly:'246,196,212'}
+};
+var ORDER=['古寺上香','祈愿供灯','莲池许愿','月下静心'];
+var TV='https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14';
+var MODEL='https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_multiclass_256x256/float32/latest/selfie_multiclass_256x256.tflite';
+var imm,cv,ctx,W=0,H=0,S=1,DPR=1,raf=0,t0=0,last=0,cur=ORDER[0],sc=SC[cur],st={};
+var person=null,graded=null,isOval=false,pl=null,personT=0,breathOn=true,audio=null,segP=null,wishText='',lastBreath='';
+var $=function(id){return document.getElementById(id);};
+
+function rng(seed){var s=seed>>>0;return function(){s=(Math.imul(s,1664525)+1013904223)>>>0;return s/4294967296;};}
+function ridge(r,base,amp,f){var p=[],a=r()*6,b=r()*6;for(var i=0;i<=48;i++){p.push(base-amp*(0.55+0.45*Math.sin(i*0.31*f+a)*Math.sin(i*0.13+b))+(r()-.5)*amp*0.12);}return p;}
+function build(){
+ var r=rng(7);
+ st.stars=[];for(var i=0;i<130;i++)st.stars.push({x:r(),y:r()*0.55,s:r()*1.3+.3,p:r()*6.28});
+ st.far=ridge(r,.6,.1,.6);st.near=ridge(r,.66,.07,1.1);
+ st.flies=[];for(i=0;i<44;i++)st.flies.push({x:r(),y:r(),v:.01+r()*.025,p:r()*6.28,s:r()*1.5+.6});
+ st.lan=[];for(i=0;i<26;i++)st.lan.push({x:r(),y:r()*.66,s:.6+r()*.8,v:.006+r()*.012,p:r()*6.28});
+ st.lamps=[];for(i=0;i<9;i++)st.lamps.push({x:r(),y:.7+r()*.24,p:r()*6.28});
+ st.pads=[];for(i=0;i<16;i++)st.pads.push({x:r(),y:.67+r()*.31,s:.5+r()*.9,a:r()*6.28});
+ st.lotus=[];for(i=0;i<8;i++)st.lotus.push({x:r(),y:.69+r()*.27,s:.6+r()*.7,c:r()});
+ st.blos=[];for(i=0;i<22;i++)st.blos.push({t:r(),o:(r()-.5)*18,s:.6+r()});
+}
+
+function size(){
+ DPR=Math.min(window.devicePixelRatio||1,2);W=imm.clientWidth;H=imm.clientHeight;S=Math.min(W,H)/390;
+ cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);layout();
+}
+function hz(){return H*(sc.water?.64:.68);}
+function moonPos(){return {x:W*sc.moon[0],y:H*sc.moon[1],r:sc.moon[2]*S};}
+
+/* ---------- drawing ---------- */
+function sky(t){
+ var g=ctx.createLinearGradient(0,0,0,hz());g.addColorStop(0,sc.sky[0]);g.addColorStop(.6,sc.sky[1]);g.addColorStop(1,sc.sky[2]);
+ ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+ for(var i=0;i<st.stars.length;i++){var s=st.stars[i];ctx.globalAlpha=.25+.55*(0.5+0.5*Math.sin(t*1.2+s.p));ctx.fillStyle='#fff8e8';ctx.fillRect(s.x*W,s.y*H,s.s,s.s);}
+ ctx.globalAlpha=1;
+ var m=moonPos(),rg=ctx.createRadialGradient(m.x,m.y,m.r*.8,m.x,m.y,m.r*7);
+ rg.addColorStop(0,'rgba('+sc.moonC+',.22)');rg.addColorStop(1,'rgba('+sc.moonC+',0)');ctx.fillStyle=rg;ctx.fillRect(0,0,W,H);
+ var d=ctx.createRadialGradient(m.x-m.r*.3,m.y-m.r*.3,m.r*.1,m.x,m.y,m.r);d.addColorStop(0,'#fffaf0');d.addColorStop(1,'rgba('+sc.moonC+',.9)');
+ ctx.fillStyle=d;ctx.beginPath();ctx.arc(m.x,m.y,m.r,0,6.283);ctx.fill();
+}
+function drawRidge(p,col){ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(0,H);for(var i=0;i<p.length;i++)ctx.lineTo(i/48*W,p[i]*H);ctx.lineTo(W,H);ctx.closePath();ctx.fill();}
+function mist(t,y,a){
+ for(var k=0;k<3;k++){var x=(0.5+0.5*Math.sin(t*0.04+k*2.1))*W,rx=W*.7,ry=H*.07;
+  ctx.save();ctx.translate(x,y+k*H*.025);ctx.scale(1,ry/rx);var g=ctx.createRadialGradient(0,0,0,0,0,rx);
+  g.addColorStop(0,'rgba('+sc.mist+','+a+')');g.addColorStop(1,'rgba('+sc.mist+',0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,rx,0,6.283);ctx.fill();ctx.restore();}
+}
+function ground(t){
+ var y=hz();
+ if(sc.water){
+  var g=ctx.createLinearGradient(0,y,0,H);g.addColorStop(0,sc.sky[2]);g.addColorStop(.25,sc.sky[1]);g.addColorStop(1,'#03070b');
+  ctx.fillStyle=g;ctx.fillRect(0,y,W,H-y);
+  var m=moonPos();
+  for(var k=0;k<22;k++){var f=k/22,yy=y+Math.pow(f,1.3)*(H-y),w=m.r*(1.4+k*.35)*(0.55+0.45*Math.sin(t*1.4+k*1.7));
+   ctx.fillStyle='rgba('+sc.moonC+','+(0.28*(1-f))+')';ctx.fillRect(m.x-w/2+Math.sin(t+k)*3*S,yy,w,1.6*S);}
+  ctx.fillStyle='rgba('+sc.moonC+',.18)';ctx.fillRect(0,y,W,1);
+ }else{
+  var g2=ctx.createLinearGradient(0,y,0,H);g2.addColorStop(0,'#141a22');g2.addColorStop(1,'#05080c');ctx.fillStyle=g2;ctx.fillRect(0,y,W,H-y);
+  ctx.fillStyle='rgba(255,220,170,.14)';ctx.fillRect(0,y,W,1.2);
+ }
+}
+function pagoda(x,b,s,col,win){
+ ctx.fillStyle=col;ctx.fillRect(x-58*s,b-38*s,116*s,38*s);
+ if(win){for(var i=-2;i<=2;i++){ctx.fillStyle='rgba(255,186,105,.55)';ctx.fillRect(x+i*22*s-5*s,b-28*s,10*s,16*s);}ctx.fillStyle=col;}
+ var y=b-38*s,T=[[150,26],[118,24],[90,22]];
+ for(var j=0;j<T.length;j++){var w2=T[j][0]*s/2,hh=T[j][1]*s;
+  ctx.beginPath();ctx.moveTo(x-w2-10*s,y-14*s);ctx.quadraticCurveTo(x-w2*.6,y+2*s,x-w2*.3,y);ctx.lineTo(x+w2*.3,y);
+  ctx.quadraticCurveTo(x+w2*.6,y+2*s,x+w2+10*s,y-14*s);ctx.lineTo(x+w2*.4,y-20*s);ctx.lineTo(x-w2*.4,y-20*s);ctx.closePath();ctx.fill();
+  ctx.fillRect(x-w2*.42,y-20*s-hh,w2*.84,hh);y-=20*s+hh;}
+ ctx.fillRect(x-1.5*s,y-24*s,3*s,24*s);
+ return b-38*s;
+}
+function glow(x,y,r,col,a){var g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,'rgba('+col+','+a+')');g.addColorStop(1,'rgba('+col+',0)');ctx.fillStyle=g;ctx.fillRect(x-r,y-r,r*2,r*2);}
+function lantern(x,y,z,t,p){
+ var s=11*S*z;glow(x,y,s*3.2,'255,170,80',.28+.08*Math.sin(t*3+p));
+ var g=ctx.createLinearGradient(0,y-s,0,y+s);g.addColorStop(0,'#ffe2a0');g.addColorStop(1,'#e0742c');ctx.fillStyle=g;
+ ctx.beginPath();ctx.moveTo(x-s*.5,y-s*.75);ctx.lineTo(x+s*.5,y-s*.75);ctx.lineTo(x+s*.4,y+s*.7);ctx.lineTo(x-s*.4,y+s*.7);ctx.closePath();ctx.fill();
+}
+function lotus(x,y,s,a){
+ ctx.save();ctx.translate(x,y);ctx.scale(s,s);ctx.globalAlpha=a;
+ glow(0,-14,40,'255,226,170',.35);
+ var A=[-62,62,-31,31,0],O=[.7,.7,.88,.88,1];
+ for(var i=0;i<5;i++){ctx.save();ctx.rotate(A[i]*Math.PI/180);ctx.globalAlpha=a*O[i];ctx.fillStyle='#e9a3b4';ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(-14,-22,-10,-46,0,-58);ctx.bezierCurveTo(10,-46,14,-22,0,0);ctx.fill();ctx.restore();}
+ ctx.globalAlpha=a;ctx.fillStyle='#ffe9b8';ctx.beginPath();ctx.arc(0,-12,6,0,6.283);ctx.fill();ctx.restore();ctx.globalAlpha=1;
+}
+function back(t){
+ var y=hz();
+ if(sc.key==='temple'){
+  pagoda(W*.86,y-H*.02,S*.55,'#101722',false);
+  var top=pagoda(W*(W>H?.2:.14),y,S*.9,'#070b11',true);
+  lantern(W*(W>H?.2:.14)-62*S,top+10*S,.7,t,1);lantern(W*(W>H?.2:.14)+62*S,top+10*S,.7,t,2);
+ }else if(sc.key==='moon'){
+  ctx.strokeStyle='#04070c';ctx.lineCap='round';
+  var bx=[[0,H*.06,W*.22,H*.1,W*.42,H*.04,9],[W*.12,H*.08,W*.2,H*.18,W*.3,H*.22,5]];
+  for(var i=0;i<bx.length;i++){var B=bx[i];ctx.lineWidth=B[6]*S;ctx.beginPath();ctx.moveTo(B[0],B[1]);ctx.quadraticCurveTo(B[2],B[3],B[4],B[5]);ctx.stroke();}
+  for(i=0;i<st.blos.length;i++){var o=st.blos[i],q=i%2?bx[1]:bx[0],u=o.t,ix=(1-u)*(1-u)*q[0]+2*(1-u)*u*q[2]+u*u*q[4],iy=(1-u)*(1-u)*q[1]+2*(1-u)*u*q[3]+u*u*q[5];
+   ctx.fillStyle='rgba(246,190,206,.85)';ctx.beginPath();ctx.arc(ix+o.o*S*.6,iy+o.o*S*.4,3.2*S*o.s,0,6.283);ctx.fill();}
+ }
+}
+function mid(t,dt){
+ var y=hz(),i;
+ if(sc.key==='temple'){
+  var bx=W*(W>H?.34:.24),by=y+(H-y)*.22;
+  glow(bx,by-10*S,90*S,'255,170,90',.18);
+  ctx.fillStyle='#1b140f';ctx.beginPath();ctx.ellipse(bx,by,30*S,15*S,0,0,6.283);ctx.fill();
+  ctx.fillRect(bx-24*S,by,6*S,18*S);ctx.fillRect(bx+18*S,by,6*S,18*S);
+  ctx.strokeStyle='rgba(255,190,110,.45)';ctx.lineWidth=1.2*S;ctx.beginPath();ctx.ellipse(bx,by-6*S,30*S,8*S,0,0,6.283);ctx.stroke();
+  for(var k=0;k<3;k++){var tx=bx+(k-1)*7*S,ty=by-34*S;
+   ctx.strokeStyle='#5a3b26';ctx.lineWidth=1.4*S;ctx.beginPath();ctx.moveTo(tx,by-8*S);ctx.lineTo(tx,ty);ctx.stroke();
+   glow(tx,ty,6*S,'255,140,60',.9);
+   var sg=ctx.createLinearGradient(0,ty,0,ty-360*S);sg.addColorStop(0,'rgba(232,226,236,.4)');sg.addColorStop(1,'rgba(232,226,236,0)');
+   for(var pass=0;pass<2;pass++){ctx.strokeStyle=sg;ctx.lineWidth=(pass?9:2)*S;ctx.globalAlpha=pass?.25:1;ctx.beginPath();
+    for(var n=0;n<72;n++){var yy=ty-n*5*S,xx=tx+Math.sin(n*.12+t*.7+k*1.7)*n*.45*S;n?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy);}ctx.stroke();}
+   ctx.globalAlpha=1;}
+ }else if(sc.key==='lantern'){
+  for(i=0;i<st.lan.length;i++){var L=st.lan[i];L.y-=L.v*dt;if(L.y<-.05){L.y=.66;L.x=Math.random();}
+   var lx=(L.x+Math.sin(t*.3+L.p)*.01)*W,ly=L.y*H,z=L.s*(.45+L.y*.9);lantern(lx,ly,z,t,L.p);
+   if(ly<y){ctx.globalAlpha=.18;lantern(lx,y+(y-ly)*.35,z*.8,t,L.p);ctx.globalAlpha=1;}}
+  for(i=0;i<st.lamps.length;i++){var P=st.lamps[i];P.x+=dt*.004;if(P.x>1.05)P.x=-.05;var px=P.x*W,py=P.y*H,pz=(P.y-.6)*2.2;
+   glow(px,py,22*S*pz,'255,170,80',.5);ctx.fillStyle='#f4b25e';ctx.beginPath();ctx.ellipse(px,py,7*S*pz,3*S*pz,0,0,6.283);ctx.fill();}
+ }else if(sc.key==='lotus'){
+  for(i=0;i<st.pads.length;i++){var D=st.pads[i],dz=(D.y-.6)*2.4;ctx.fillStyle='rgba(28,72,58,.92)';ctx.beginPath();ctx.ellipse(D.x*W,D.y*H,26*S*D.s*dz,8*S*D.s*dz,0,0,6.283);ctx.fill();}
+  for(i=0;i<st.lotus.length;i++){var F=st.lotus[i],fx=F.x*W,fy=F.y*H,fz=(F.y-.6)*2.2*F.s*S*.55;
+   var rr=((t*.35+F.c*3)%3)/3;ctx.strokeStyle='rgba(210,236,230,'+(.35*(1-rr))+')';ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(fx,fy+4*S,rr*90*fz,rr*26*fz,0,0,6.283);ctx.stroke();
+   lotus(fx,fy+Math.sin(t*.8+F.c*6)*1.5*S,fz,.95);}
+ }
+}
+function flies(t,dt){
+ for(var i=0;i<st.flies.length;i++){var f=st.flies[i];
+  if(sc.key==='moon'){f.y+=f.v*dt*.8;f.x+=dt*.006;if(f.y>1.02){f.y=-.02;}if(f.x>1.02)f.x=-.02;
+   ctx.save();ctx.translate(f.x*W,f.y*H);ctx.rotate(t*.8+f.p);ctx.fillStyle='rgba('+sc.fly+',.75)';ctx.beginPath();ctx.ellipse(0,0,3.4*S*f.s,1.8*S*f.s,0,0,6.283);ctx.fill();ctx.restore();}
+  else{f.y-=f.v*dt*.5;if(f.y<.25)f.y=1;var a=.25+.45*(0.5+0.5*Math.sin(t*2+f.p));glow((f.x+Math.sin(t*.4+f.p)*.02)*W,f.y*H,6*S*f.s,sc.fly,a);}
+ }
+}
+function vignette(){
+ var g=ctx.createRadialGradient(W/2,H*.45,Math.min(W,H)*.35,W/2,H*.5,Math.max(W,H)*.85);g.addColorStop(0,'rgba(3,6,10,0)');g.addColorStop(1,'rgba(3,6,10,.62)');
+ ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+}
+function frame(now){
+ raf=requestAnimationFrame(frame);
+ var t=(now-t0)/1000,dt=Math.min(.05,(now-last)/1000||0);last=now;
+ ctx.setTransform(DPR,0,0,DPR,0,0);
+ var z=1+Math.min(t/60,1)*.05;
+ ctx.save();ctx.translate(W/2,H*.6);ctx.scale(z,z);ctx.translate(-W/2,-H*.6);
+ sky(t);drawRidge(st.far,'rgba(22,32,46,.9)');back(t);drawRidge(st.near,'rgba(11,17,25,.95)');mist(t,hz()-H*.02,.12);ground(t);mid(t,dt);
+ ctx.restore();
+ if(graded&&pl){
+  var a=Math.min(1,Math.max(0,(now-personT)/1800)),b=1+Math.sin(t*.8)*.004;ctx.globalAlpha=a;
+  glow(pl.x+pl.w/2,pl.y+pl.h*.38,pl.w*.85,sc.rim,.2);
+  if(isOval){ctx.strokeStyle='rgba(216,184,117,.6)';ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(pl.x+pl.w/2,pl.y+pl.h/2,pl.w*.51,0,6.283);ctx.stroke();}
+  ctx.drawImage(graded,pl.x-pl.w*(b-1)/2,pl.y-pl.h*(b-1),pl.w*b,pl.h*b);ctx.globalAlpha=1;
+ }
+ mist(t,H*.95,.14);flies(t,dt);vignette();
+ if(breathOn){var c=t%10,k,tx;if(c<4){k=c/4;tx='吸气';}else{k=1-(c-4)/6;tx='呼气';}var e=.5-.5*Math.cos(k*Math.PI);
+  $('breathRing').style.transform='scale('+(0.62+0.38*e)+')';if(tx!==lastBreath){$('breathTxt').textContent=tx;lastBreath=tx;}}
+}
+
+/* ---------- person ---------- */
+function layout(){
+ if(!graded){pl=null;return;}
+ var r=graded.width/graded.height,h=H*(isOval?.34:.6),w=h*r,mw=W*(W>H?.42:.88);if(w>mw){w=mw;h=w/r;}
+ var cx=W*(W>H?.62:.5);pl={x:cx-w/2,y:isOval?H*.6-h/2:H-h,w:w,h:h};
+}
+function grade(){
+ if(!person){graded=null;return;}
+ var c=document.createElement('canvas');c.width=person.width;c.height=person.height;var g=c.getContext('2d');
+ g.drawImage(person,0,0);g.globalCompositeOperation='multiply';g.fillStyle=sc.tint;g.fillRect(0,0,c.width,c.height);
+ g.globalCompositeOperation='screen';var lx=sc.moon[0]<.5?0:c.width,rg=g.createRadialGradient(lx,c.height*.08,0,lx,c.height*.08,c.width*1.1);
+ rg.addColorStop(0,'rgba('+sc.rim+',.4)');rg.addColorStop(1,'rgba('+sc.rim+',0)');g.fillStyle=rg;g.fillRect(0,0,c.width,c.height);
+ g.globalCompositeOperation='destination-in';g.drawImage(person,0,0);
+ if(!isOval){g.globalCompositeOperation='destination-out';var bf=g.createLinearGradient(0,c.height*.8,0,c.height);bf.addColorStop(0,'rgba(0,0,0,0)');bf.addColorStop(1,'rgba(0,0,0,1)');g.fillStyle=bf;g.fillRect(0,0,c.width,c.height);}
+ graded=c;layout();
+}
+function loadPhoto(file){
+ return new Promise(function(res,rej){var u=URL.createObjectURL(file),img=new Image();
+  img.onload=function(){var k=Math.min(1,1024/Math.max(img.naturalWidth,img.naturalHeight)),c=document.createElement('canvas');
+   c.width=Math.round(img.naturalWidth*k);c.height=Math.round(img.naturalHeight*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c);};
+  img.onerror=function(){URL.revokeObjectURL(u);rej(new Error('image'));};img.src=u;});
+}
+function getSeg(){
+ if(!segP)segP=import(TV+'/vision_bundle.mjs').then(function(v){return v.FilesetResolver.forVisionTasks(TV+'/wasm').then(function(fs){
+  return v.ImageSegmenter.createFromOptions(fs,{baseOptions:{modelAssetPath:MODEL},runningMode:'IMAGE',outputConfidenceMasks:true,outputCategoryMask:false});});});
+ return segP;
+}
+function timeout(p,ms){return Promise.race([p,new Promise(function(_,rej){setTimeout(function(){rej(new Error('timeout'));},ms);})]);}
+function cutout(src,bg,mw,mh){
+ var w=src.width,h=src.height,g=src.getContext('2d'),id=g.getImageData(0,0,w,h),d=id.data,x0=w,y0=h,x1=0,y1=0,n=0;
+ for(var y=0;y<h;y++){var my=Math.min(mh-1,Math.floor(y*mh/h));for(var x=0;x<w;x++){var mx=Math.min(mw-1,Math.floor(x*mw/w)),p=1-bg[my*mw+mx],a=Math.max(0,Math.min(1,(p-.3)/.4)),i=(y*w+x)*4;
+  d[i+3]=Math.round(a*255);if(a>.5){n++;if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;}}}
+ if(n<w*h*.03)return null;
+ g.putImageData(id,0,0);var pad=Math.round(Math.max(w,h)*.03);x0=Math.max(0,x0-pad);y0=Math.max(0,y0-pad);x1=Math.min(w,x1+pad);y1=Math.min(h,y1+pad);
+ var c=document.createElement('canvas');c.width=x1-x0;c.height=y1-y0;c.getContext('2d').drawImage(src,x0,y0,c.width,c.height,0,0,c.width,c.height);return c;
+}
+function oval(src){
+ var s=Math.min(src.width,src.height),c=document.createElement('canvas');c.width=c.height=s;var g=c.getContext('2d');
+ g.drawImage(src,(src.width-s)/2,(src.height-s)/2,s,s,0,0,s,s);g.globalCompositeOperation='destination-in';
+ var r=g.createRadialGradient(s/2,s/2,s*.34,s/2,s/2,s/2);r.addColorStop(0,'#000');r.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=r;g.fillRect(0,0,s,s);return c;
+}
+function makePerson(file){
+ return loadPhoto(file).then(function(src){
+  return timeout(getSeg(),25000).then(function(seg){return new Promise(function(res,rej){
+   try{seg.segment(src,function(r){var m=r.confidenceMasks&&r.confidenceMasks[0];if(!m){rej(new Error('mask'));return;}res({d:m.getAsFloat32Array().slice(),w:m.width,h:m.height});});}catch(e){rej(e);}});
+  }).then(function(o){var c=cutout(src,o.d,o.w,o.h);if(!c)throw new Error('noperson');isOval=false;return c;})
+   .catch(function(e){console.warn('segment',e);isOval=true;return oval(src);});
+ });
+}
+
+/* ---------- audio ---------- */
+function startAudio(){
+ var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;var a=new AC(),m=a.createGain();m.gain.value=0;m.connect(a.destination);
+ m.gain.linearRampToValueAtTime(.22,a.currentTime+3);var lp=a.createBiquadFilter();lp.type='lowpass';lp.frequency.value=900;lp.connect(m);
+ var pad=a.createGain();pad.gain.value=.3;pad.connect(lp);
+ [110,164.81,220,329.63].forEach(function(f,i){var o=a.createOscillator(),g=a.createGain();o.type=i%2?'triangle':'sine';o.frequency.value=f;o.detune.value=(i-1.5)*4;g.gain.value=[.5,.16,.24,.07][i];o.connect(g);g.connect(pad);o.start();});
+ var lfo=a.createOscillator(),lg=a.createGain();lfo.frequency.value=.08;lg.gain.value=.1;lfo.connect(lg);lg.connect(pad.gain);lfo.start();
+ var notes=[523.25,587.33,659.25,783.99,880];
+ function chime(){var n=a.currentTime,f=notes[Math.floor(Math.random()*notes.length)],o=a.createOscillator(),o2=a.createOscillator(),g=a.createGain(),g2=a.createGain();
+  o.frequency.value=f;o2.frequency.value=f*2.76;g2.gain.value=.22;o.connect(g);o2.connect(g2);g2.connect(g);g.connect(m);
+  g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(.16,n+.02);g.gain.exponentialRampToValueAtTime(.0008,n+5);o.start(n);o2.start(n);o.stop(n+5.2);o2.stop(n+5.2);}
+ chime();var iv=setInterval(chime,8000);
+ return {stop:function(){clearInterval(iv);m.gain.cancelScheduledValues(a.currentTime);m.gain.setValueAtTime(m.gain.value,a.currentTime);m.gain.linearRampToValueAtTime(0,a.currentTime+.8);setTimeout(function(){a.close();},1000);}};
+}
+
+/* ---------- ui ---------- */
+function setScene(name){
+ cur=name;sc=SC[name];$('immTitle').innerHTML='';var b=document.createElement('b');b.textContent=name;$('immTitle').appendChild(b);$('immTitle').appendChild(document.createTextNode(sc.en));grade();
+}
+function showWish(delay){
+ var w=$('immWish');w.innerHTML='';var chars=Array.from(wishText);
+ chars.forEach(function(ch,i){var s=document.createElement('span');s.textContent=ch===' '?'\u00a0':ch;s.style.animationDelay=(delay+i*.13)+'s';w.appendChild(s);});
+}
+function status(msg,small){var s=$('immStatus');s.textContent=msg||'';s.classList.toggle('small',!!small);}
+function close(){
+ cancelAnimationFrame(raf);raf=0;if(audio){audio.stop();audio=null;}$('bSound').setAttribute('aria-pressed','false');
+ imm.hidden=true;document.documentElement.style.overflow='';window.removeEventListener('resize',size);
+}
+function save(){
+ var c=document.createElement('canvas');c.width=cv.width;c.height=cv.height;var g=c.getContext('2d');g.drawImage(cv,0,0);g.scale(DPR,DPR);
+ var fs=Math.round(Math.min(W,H)/15);g.font='500 '+fs+'px "Noto Serif SC","Songti SC","STSong",serif';g.textAlign='center';g.fillStyle='#f2d69d';
+ g.shadowColor='rgba(0,0,0,.8)';g.shadowBlur=16;var lines=[],line='',maxW=W*.82;
+ Array.from(wishText).forEach(function(ch){if(g.measureText(line+ch).width>maxW){lines.push(line);line=ch;}else line+=ch;});if(line)lines.push(line);
+ lines.forEach(function(l,i){g.fillText(l,W/2,H*.2+i*fs*1.7);});
+ g.font='12px Georgia,serif';g.fillStyle='rgba(242,214,157,.85)';var d=new Date();
+ g.fillText('祈福圈 GOOD WISHES CIRCLE  '+cur+'  '+d.getFullYear()+'.'+(d.getMonth()+1)+'.'+d.getDate(),W/2,H-24);
+ c.toBlob(function(bl){var a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='祈福圈纪念画面.png';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href);},5000);},'image/png');
+}
+window.startImmersive=function(){
+ imm=$('imm');cv=$('immCanvas');ctx=cv.getContext('2d');
+ var file=$('photo').files&&$('photo').files[0];wishText=($('wish').value||'').trim()||'愿此刻心安，所念皆平安。';
+ var m=$('wishModal');if(m.open)m.close();
+ imm.hidden=false;document.documentElement.style.overflow='hidden';
+ person=null;graded=null;isOval=false;build();size();window.addEventListener('resize',size);
+ setScene(typeof selected!=='undefined'&&SC[selected]?selected:ORDER[0]);
+ $('immFade').style.transition='none';$('immFade').style.opacity='1';$('immWish').innerHTML='';
+ t0=last=performance.now();if(!raf)raf=requestAnimationFrame(frame);
+ requestAnimationFrame(function(){$('immFade').style.transition='';$('immFade').style.opacity='0';});
+ if(file){
+  status('AI 正在把你融入'+cur+'……\n照片只在你的手机里处理');
+  makePerson(file).then(function(p){person=p;grade();personT=performance.now();
+   status(isOval?'没能清晰识别出人物，已用柔光画框呈现你的照片':'',true);showWish(1.6);
+   if(isOval)setTimeout(function(){status('');},5000);})
+  .catch(function(){status('照片读取失败，换一张试试',true);showWish(.8);});
+ }else{status('');showWish(1.8);}
+};
+document.addEventListener('DOMContentLoaded',function(){});
+$('immClose').addEventListener('click',close);
+$('bBreath').addEventListener('click',function(){breathOn=!breathOn;this.setAttribute('aria-pressed',breathOn);$('immBreath').style.display=breathOn?'':'none';});
+$('bSound').addEventListener('click',function(){if(audio){audio.stop();audio=null;this.setAttribute('aria-pressed','false');}else{audio=startAudio();this.setAttribute('aria-pressed',audio?'true':'false');}});
+$('bScene').addEventListener('click',function(){var f=$('immFade');f.style.transition='opacity .6s ease';f.style.opacity='1';
+ setTimeout(function(){setScene(ORDER[(ORDER.indexOf(cur)+1)%ORDER.length]);f.style.opacity='0';setTimeout(function(){f.style.transition='';},700);},600);});
+$('bSave').addEventListener('click',save);
+})();
 </script>
 </body></html>
